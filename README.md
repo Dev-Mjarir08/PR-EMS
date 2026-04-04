@@ -1,3 +1,4 @@
 # PR-EMS
-admin Name:Jarir Multani
+admin Name:jarir@gmail.com
+
 password:1234
