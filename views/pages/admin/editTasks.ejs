@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Task</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f7fb;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card-form {
+            width: 450px;
+            background: #fff;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-label {
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .input-group-clean {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-group-clean:focus-within {
+            border-color: #1e6f3f;
+            box-shadow: 0 0 0 2px rgba(30, 111, 63, 0.1);
+        }
+
+        .input-group-text-clean {
+            padding-left: 12px;
+            color: #888;
+        }
+
+        .form-control-clean {
+            border: none;
+            outline: none;
+            padding: 10px;
+            width: 100%;
+            background: transparent;
+        }
+
+        textarea.form-control-clean {
+            resize: none;
+        }
+
+        .btn-submit {
+            background: #1e6f3f;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 10px;
+            font-size: 0.9rem;
+        }
+
+        .btn-submit:hover {
+            background: #155a34;
+        }
+
+        .title {
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card-form">
+
+        <h5 class="title">Edit Task</h5>
+
+        <form method="post" action="/admin/editTask/<%= task._id %>">
+
+            <!-- Task Name -->
+            <div class="mb-3">
+                <label class="form-label">Task Name</label>
+                <div class="input-group-clean">
+                    <span class="input-group-text-clean">
+                        <i class="bi bi-card-text"></i>
+                    </span>
+                    <input type="text" name="name" value="<%= task.name %>" class="form-control-clean"
+                        placeholder="Enter task name">
+                </div>
+            </div>
+
+            <!-- Description -->
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+                <div class="input-group-clean p-2">
+                    <textarea name="description" class="form-control-clean" rows="3"
+                        placeholder="Enter task description"><%= task.description %></textarea>
+                </div>
+            </div>
+
+            <!-- Assign To -->
+            <div class="mb-3">
+                <label class="form-label">Assign Employee</label>
+                <div class="input-group-clean">
+                    <span class="input-group-text-clean">
+                        <i class="bi bi-person-check"></i>
+                    </span>
+                    <select name="assignedTo" class="form-control-clean">
+                        <% employees.forEach(emp=> { %>
+                            <option value="<%= emp._id %>">
+                                <%= emp.name %>
+                            </option>
+                            <% }) %>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="btn-submit w-100">
+                <i class="bi bi-plus-circle me-2"></i> Edit Task
+            </button>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>

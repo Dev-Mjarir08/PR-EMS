@@ -1,8 +1,24 @@
 {
-  "name": "pr-employee-system",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "body-parser": "^2.2.2",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.4.1",
+    "ejs": "^5.0.1",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.4.1",
+    "morgan": "^1.10.1",
+    "multer": "^2.1.1"
+  },
+  "name": "employeemaanagement",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  },
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
@@ -11,20 +27,5 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module",
-  "dependencies": {
-    "bcrypt": "^6.0.0",
-    "body-parser": "^2.2.2",
-    "cookie-parser": "^1.4.7",
-    "dotenv": "^17.3.1",
-    "ejs": "^5.0.1",
-    "express": "^5.2.1",
-    "jsonwebtoken": "^9.0.3",
-    "mongoose": "^9.3.3",
-    "morgan": "^1.10.1",
-    "multer": "^2.1.1"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.14"
-  }
+  "type": "module"
 }

@@ -7,17 +7,18 @@ const taskModel= new mongoose.Schema({
     description: {
         type: String
     },
-     createdby: {
+    createdBy: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Admin' 
+        ref: 'User'
     },
     assignedTo: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Employee'
+        ref: 'User'
     },
-    assignedBy: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Manager' 
+    status: {
+        type: String,
+        enum: ['pending', 'in progress', 'completed'],
+        default: 'pending'
     }
 });
 const Task = mongoose.model('Task', taskModel);

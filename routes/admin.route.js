@@ -1,23 +1,32 @@
 import { Router } from "express";
-import adminController from "../controllers/admin.controller.js";
-import adminAuth from "../middlewares/adminAuth.js";
+import adminController from "../controller/admin.controller.js";
+import userAuth from "../middleware/userAuth.js";
 
 const adminRouter = Router();
 
+// Define admin routes here
+
+
+adminRouter.post('/signup', adminController.signup);
 adminRouter.get('/login', adminController.loginPage);
 adminRouter.post('/login', adminController.login);
-adminRouter.post('/signin', adminController.signin);
-//employyeee routes
-adminRouter.get('/createEmployee', adminAuth, adminController.createEmployeePage);
-adminRouter.post('/createEmployee', adminAuth, adminController.createEmployee);
-adminRouter.get('/viewEmployees', adminAuth, adminController.viewEmployeesPage);
-adminRouter.get('/delete/:id', adminAuth, adminController.deleteEmployee);
-adminRouter.get('/edit/:id', adminAuth, adminController.editEmployeePage);
-adminRouter.post('/edit/:id', adminAuth, adminController.editEmployee);
+adminRouter.get('/logout', userAuth, adminController.logout);
 
-//add Task routes here
-adminRouter.get('/addTask', adminAuth, adminController.createTaskPage);
-adminRouter.post('/addTask', adminAuth, adminController.createTask);
-adminRouter.get('/viewTasks', adminAuth, adminController.viewTasksPage);
+// Employee Routes
+
+adminRouter.get('/createEmployee', userAuth, adminController.createEmployeePage);
+adminRouter.post('/createEmployee', userAuth, adminController.createEmployee);
+adminRouter.get('/viewEmployees', userAuth, adminController.viewEmployees);
+adminRouter.get('/delete/:id', userAuth, adminController.deleteEmployee);
+adminRouter.get('/edit/:id', userAuth, adminController.editEmployeePage);
+adminRouter.post('/edit/:id', userAuth, adminController.editEmployee);
+//add Tasks
+
+adminRouter.get('/addTask', userAuth, adminController.addTaskPage);
+adminRouter.post('/addTask', userAuth, adminController.addTask);
+adminRouter.get('/viewTasks', userAuth, adminController.viewTasks);
+adminRouter.get('/deleteTask/:id', userAuth, adminController.deleteTask);
+adminRouter.get('/editTask/:id', userAuth, adminController.editTaskPage);
+adminRouter.post('/editTask/:id', userAuth, adminController.editTask);
 
 export default adminRouter;
