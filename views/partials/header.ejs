@@ -61,12 +61,13 @@
                         </a>
                     </li>
 
+
                     <!-- EMPLOYEE SECTION (Admin + Manager only) -->
                     <% if (user && (user.role==='admin' || user.role==='manager' )) { %>
                         <li class="nxl-item nxl-hasmenu">
                             <a href="javascript:void(0);" class="nxl-link">
                                 <span class="nxl-micon"><i class="feather-power"></i></span>
-                                <span class="nxl-mtext">Employee</span>
+                                <span class="nxl-mtext">Manager</span>
                                 <span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
                             </a>
 
@@ -75,54 +76,95 @@
                                 <!-- Only Admin -->
                                 <% if (user.role==='admin' ) { %>
                                     <li class="nxl-item">
-                                        <a href="/admin/createEmployee" class="nxl-link">
-                                            Create Employee
+                                        <a href="/admin/createManager" class="nxl-link">
+                                            Create Manager
                                         </a>
                                     </li>
+
+
                                     <% } %>
 
                                         <!-- Admin + Manager -->
-                                        <li class="nxl-item">
-                                            <a href="/admin/viewEmployees" class="nxl-link">
-                                                View Employees
-                                            </a>
-                                        </li>
-
+                                        <% if (user.role==='admin' ) { %>
+                                            <li class="nxl-item">
+                                                <a href="/admin/viewManagers" class="nxl-link">
+                                                    View Managers
+                                                </a>
+                                            </li>
+                                            <% } %>
                             </ul>
                         </li>
                         <% } %>
 
-                            <!-- TASK SECTION (sab ke liye) -->
-                            <% if (user && (user.role==='admin' || user.role==='manager' || user.role==='employee' )) {
-                                %>
+                            <!-- EMPLOYEE SECTION (Admin + Manager only) -->
+
+
+
+
+                            <% if (user && (user.role==='admin' || user.role==='manager' )) { %>
                                 <li class="nxl-item nxl-hasmenu">
                                     <a href="javascript:void(0);" class="nxl-link">
                                         <span class="nxl-micon"><i class="feather-power"></i></span>
-                                        <span class="nxl-mtext">Task</span>
+                                        <span class="nxl-mtext">Employee</span>
                                         <span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
                                     </a>
 
                                     <ul class="nxl-submenu">
 
-                                        <!-- Admin + Manager -->
-                                        <% if (user.role==='admin' || user.role==='manager' ) { %>
+                                        <!-- Only Admin -->
+                                        <% if (user.role==='admin' ) { %>
                                             <li class="nxl-item">
-                                                <a href="/admin/addTask" class="nxl-link">
-                                                    Add Task
+                                                <a href="/admin/createEmployee" class="nxl-link">
+                                                    Create Employee
                                                 </a>
                                             </li>
+
+
                                             <% } %>
 
-                                                <!-- Sab ke liye -->
-                                                <li class="nxl-item">
-                                                    <a href="/admin/viewTasks" class="nxl-link">
-                                                        View Tasks
-                                                    </a>
-                                                </li>
-
+                                                <!-- Admin + Manager -->
+                                                <% if (user.role==='admin' || user.role==='manager' ) { %>
+                                                    <li class="nxl-item">
+                                                        <a href="/admin/viewEmployees" class="nxl-link">
+                                                            View Employees
+                                                        </a>
+                                                    </li>
+                                                    <% } %>
                                     </ul>
                                 </li>
                                 <% } %>
+
+                                    <!-- TASK SECTION (sab ke liye) -->
+                                    <% if (user && (user.role==='admin' || user.role==='manager' ||
+                                        user.role==='employee' )) { %>
+                                        <li class="nxl-item nxl-hasmenu">
+                                            <a href="javascript:void(0);" class="nxl-link">
+                                                <span class="nxl-micon"><i class="feather-power"></i></span>
+                                                <span class="nxl-mtext">Task</span>
+                                                <span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
+                                            </a>
+
+                                            <ul class="nxl-submenu">
+
+                                                <!-- Admin + Manager -->
+                                                <% if (user.role==='admin' ) { %>
+                                                    <li class="nxl-item">
+                                                        <a href="/admin/addTask" class="nxl-link">
+                                                            Add Task
+                                                        </a>
+                                                    </li>
+                                                    <% } %>
+
+                                                        <!-- Sab ke liye -->
+                                                        <li class="nxl-item">
+                                                            <a href="/admin/viewTasks" class="nxl-link">
+                                                                View Tasks
+                                                            </a>
+                                                        </li>
+
+                                            </ul>
+                                        </li>
+                                        <% } %>
 
                 </ul>
 

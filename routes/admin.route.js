@@ -29,4 +29,13 @@ adminRouter.get('/deleteTask/:id', userAuth, adminController.deleteTask);
 adminRouter.get('/editTask/:id', userAuth, adminController.editTaskPage);
 adminRouter.post('/editTask/:id', userAuth, adminController.editTask);
 
+// Manager Routes
+
+adminRouter.get('/createManager', userAuth, adminController.createManagerPage);
+adminRouter.post('/createManager', userAuth, adminController.createManager);
+adminRouter.get('/viewManagers', userAuth, adminController.viewManagers);
+adminRouter.get('/deleteManager/:id', userAuth, adminController.deleteManager);
+adminRouter.get('/editManager/:id', userAuth, adminController.editManagerPage);
+adminRouter.post('/editManager/:id', userAuth, adminController.editManager);
+
 export default adminRouter;

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manager List</title>
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    font-family: 'Inter', sans-serif;
+    background: #f5f7fb;
+    display: flex;
+    justify-content: center;
+    padding: 40px 15px;
+}
+
+/* Card */
+.card-table {
+    width: 950px;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+/* Header */
+.title {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+/* Table */
+.table {
+    margin-top: 10px;
+}
+
+.table thead th {
+    font-size: 0.75rem;
+    color: #6b7280;
+    font-weight: 500;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.table td {
+    font-size: 0.85rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+/* Hover */
+.table tbody tr:hover {
+    background: #f9fafb;
+}
+
+/* Buttons */
+.btn-add {
+    background: #22c55e;
+    border: none;
+    font-size: 0.8rem;
+}
+
+.btn-add:hover {
+    background: #16a34a;
+}
+
+.btn-action {
+    border: none;
+    background: transparent;
+    color: #6b7280;
+    padding: 5px;
+}
+
+.btn-action:hover {
+    color: #111;
+}
+
+.btn-delete:hover {
+    color: #dc3545;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card-table">
+
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <div class="title">Manager List</div>
+
+        <a href="/admin/createManager" class="btn btn-sm btn-add">
+            <i class="bi bi-plus"></i> Add Manager
+        </a>
+    </div>
+
+    <!-- Table -->
+    <table class="table align-middle">
+
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th class="text-end"></th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <% if (managers.length === 0) { %>
+                <tr>
+                    <td colspan="4" class="text-center text-muted">
+                        No Managers found
+                    </td>
+                </tr>
+            <% } %>
+
+            <% managers.forEach((manager, index) => { %>
+                <tr>
+                    <td><%= index + 1 %></td>
+
+                    <td class="fw-medium"><%= manager.name %></td>
+
+                    <td><%= manager.email %></td>
+
+                    <td class="text-end">
+
+                        <a href="/admin/editManager/<%= manager._id %>" class="btn-action">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+
+                        <a href="/admin/deleteManager/<%= manager._id %>" 
+                           class="btn-action btn-delete"
+                           >
+                            <i class="bi bi-trash"></i>
+                        </a>
+
+                    </td>
+                </tr>
+            <% }) %>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+</html>
